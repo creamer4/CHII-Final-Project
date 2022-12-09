@@ -1,0 +1,188 @@
+
+<html lang="en">
+    <head>
+          <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+          <link rel="stylesheet" href="assets/css/Auto-Modal-Popup.css">
+          <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+        <!--jquery js-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- leaflet files -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+            <style>
+                #myMap {position: absolute; top: 0; bottom: 0; left: 0; right:0;}
+          </style>
+
+        <!--jQuery UI files-->
+            <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+        <!--jQuery UI Touch js, required for touchscreen use-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+            <script src="js/SliderControl.js"></script>
+            <link rel="stylesheet" href= "textbox.css" />
+
+	  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	  <link rel="stylesheet" type="text/css" href="L.Control.ZoomBar.css"/>
+	  <script type="text/javascript" src="js/L.Control.ZoomBar.js"></script>
+    <style>
+
+                .lorem {
+            font-style: normal;
+            color: #000000;
+            }
+
+            html, body, #map {
+                height: 100%;
+                font: 14pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+            }
+
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        img.resize {
+                max-width:80%;
+                max-height:80%;
+                  }
+
+        .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        }
+
+        .mapboxgl-popup {
+        min-width: 70%;
+
+        }
+
+        .mapboxgl-popup-content {
+        text-align: left;
+        font-family: 'Open Sans', sans-serif;
+            max-width: 300%;
+
+        }
+
+    </style>
+        </head>
+        <body style="color: rgb(39, 34, 38);min-height: 100%;">
+            <div class="modal fade" role="dialog" tabindex="-1" id="contactModal">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Welcome to the Michigan Demonstration Map!</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p>This map was created by the 2022-2023 CHI Fellows. We aimed to explore reactions to the leak and subsequent overturn of the landmark Roe v. Wade (1973) ruling up until the midterm elections. This map shows demonstrations that took place each month, both for and against the overturn, represented by two different icons.<br></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="background: rgb(39, 34, 38);">
+                            <div class="container"><a class="navbar-brand" href="index.html" style="color: white;">Michigan Demonstration Map</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="background: rgb(233, 200, 121);"><i class="fa fa-bars"></i></button>
+                                <div class="collapse navbar-collapse" id="navbarResponsive">
+                                    <ul class="navbar-nav ms-auto text-uppercase">
+                                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="min-width: 100%;max-width: 100%;height: 100%;width: 100%;padding: 0px;min-height: 100%;margin: 0px;max-height: 100%;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 45px;padding-right: 1px;padding-bottom: 1px;padding-left: 1px;"><div id="myMap">ERROR.</div>
+            <script>
+                var map1 = L.map ('myMap', {
+                    minZoom: 7.5,
+                            maxZoom: 18,
+                zoomControl: false}).setView([43.59743364839015, -84.75832298140293], 7.5);
+
+                L.tileLayer('https://api.mapbox.com/styles/v1/jacob-cara-e/clacpjey6001d15plh9fpo29x/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamFjb2ItY2FyYS1lIiwiYSI6ImNsYWNvdG1ybzBjaTgzcHBlczU3aTI1MHQifQ.H9XbnFnyjJeYBfQxiDL4-Q', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+               }).addTo(map1);
+                    map1.attributionControl.addAttribution('CHI Fellows 2022-2023, <a href="https://chi.anthropology.msu.edu/", class="your_class">CHI MSU 2022</a>');
+
+
+var dataset1 = [
+ 
+];
+
+//INCONGRUITIES w. Acme example
+            var optionsObject = {
+                onEachFeature: onEachFeature
+            };
+            function onEachFeature (feature, layer) {
+               var content = "<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 200px;' src=" + feature.properties.image + " /></div><div><h4>" + feature.properties.title + "</h4><p>" + feature.properties.time + "</p><p>" + feature.properties.description + "</p></div>";
+               layer.setIcon(L.icon(feature.properties.icon));
+                layer.bindPopup(content, {closeButton: true});
+            };
+            // Create geoJSON layers
+			         var group1 = L.geoJSON(dataset1, optionsObject);
+			         var group2 = L.geoJSON(dataset2, optionsObject);
+			         var group3 = L.geoJSON(dataset3, optionsObject);
+			         var group4 = L.geoJSON(dataset4, optionsObject);
+			         var group5 = L.geoJSON(dataset5, optionsObject);
+			         var group6 = L.geoJSON(dataset6, optionsObject);
+			         var group7 = L.geoJSON(dataset7, optionsObject);
+
+            // Set the time attribute for each group
+            			group1.options.time = "2022/05";
+                  group2.options.time = "2022/06";
+            			group3.options.time = "2022/07";
+            			group4.options.time = "2022/08";
+            			group5.options.time = "2022/09";
+            			group6.options.time = "2022/10";
+            			group7.options.time = "2022/11";
+
+            // Create the layerGroup
+                        var multiLayers = L.layerGroup([group1, group2, group3, group4, group5, group6, group7]);
+
+            // Set the sliderControl options
+            var sliderControl1 = L.control.sliderControl( {
+              layer: multiLayers, // REQUIRED
+              alwaysShowDate: true, // to make the date box below the slider persistent
+              showAllPopups: false, // to show all popups, instead of only one; same as the popup option "autoClose: false"
+              showPopups: false, // to set it so, when a marker is generated by the slider, its popup doesn't automatically display
+              position: 'bottomleft'
+});
+
+    // Add the slider to the map
+map1.addControl(sliderControl1);
+
+// Initialize the slider
+sliderControl1.startSlider();
+
+
+	var userid = 0
+        function addUser() {
+            sidebar.addPanel({
+                id:   'user' + userid++,
+                tab:  '<i class="fa fa-user"></i>',
+                title: 'User Profile ' + userid,
+                pane: '<p>user ipsum dolor sit amet</p>',
+            });
+        }
+
+var zoom_bar = new L.Control.ZoomBar({position: 'bottomright'}).addTo(map1);
+
+
+
+	   </script>
+
+
+   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+       <script src="assets/js/Auto-Modal-Popup.js"></script>
+
+	</body>
+</html>
